@@ -24,9 +24,9 @@ class MainApp extends Component {
         selected={this.state.selected === options.id}
         onPress={() => this.selectTab(options.id)}
         icon={options.icon}
-       >
+      >
          <View style={styles.container}>
-           <Image source={options.icon} style={styles.icon}/>
+           <Image source={options.icon} style={styles.icon} />
            <Text style={styles.title}>{options.title}</Text>
          </View>
        </TabBarIOS.Item>
