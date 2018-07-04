@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text,
           ScrollView, TouchableHighLight } from 'react-native';
 
-class Detail extends Component {
+class DetailScreen extends Component {
 
   render() {
     return (
@@ -12,3 +12,5 @@ class Detail extends Component {
     );
   }
 }
+
+export default DetailScreen;
