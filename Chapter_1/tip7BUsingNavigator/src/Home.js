@@ -7,15 +7,15 @@ class Home extends Component {
   };
 
   render() {
+    //  can use push to add new detail to the stack
     const { navigate } = this.props.navigation;
 
     return (
       <View>
+        <Text>Home Screen</Text>
         <Button
           title='Go Details!'
-          onPress={() =>
-            this.props.navigation.push('Detail')
-          }
+          onPress={() => navigate('Detail')}
         />
         <Text>This is the home screen</Text>
       </View>

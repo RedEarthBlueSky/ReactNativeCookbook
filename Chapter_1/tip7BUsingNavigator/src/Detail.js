@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 
 class Home extends Component {
   static navigationOptions = {
@@ -7,9 +7,15 @@ class Home extends Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View>
-        <Text>This is the Detai screen</Text>
+        <Text>Detail screen</Text>
+        <Button
+          title='Go Home!'
+          onPress={() => navigate('Home')}
+        />
       </View>
     );
   }
