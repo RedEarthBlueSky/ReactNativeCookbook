@@ -4,11 +4,11 @@ import { View, Text, Button, Image } from 'react-native';
 
 import styles from '../styles/Styles';
 
-/*********************
+/* ********************
   Commented out sections of code are the code from the
   tip I have ommitted for the refactors so this works
   with React Navigation
-*********************/
+******************** */
 
 // const { object } = PropTypes;
 const root = 'https://s3.amazonaws.com/crysfel/public/book/01/07';
@@ -25,7 +25,7 @@ class Detail extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { navigate } = navigation;
+    // const { navigate } = navigation;
 
     const title = navigation.getParam('title', 'Error: no title here');
     const image = navigation.getParam('image', 'Error: no image available');
