@@ -10,9 +10,37 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
   },
+  detailTitle: {
+    fontSize: 20,
+    fontWeight: '200',
+    color: '#fff',
+  },
   image: {
     height: 120,
     width: 120,
+  },
+  info: {
+    padding: 10,
+    alignItems: 'center',
+  },
+  other: {
+    color: '#f1f1f1',
+    padding: 10,
+    marginRight: 10,
+    marginLeft: 10,
+    backgroundColor: '#081412',
+    marginBottom: 1,
+  },
+  play: {
+    color: '#fff',
+  },
+  playContainer: {
+    backgroundColor: '#37b298',
+    padding: 10,
+    paddingRight: 50,
+    paddingLeft: 50,
+    borderRadius: 10,
+    marginTop: 20,
   },
   section: {
     padding: 10,

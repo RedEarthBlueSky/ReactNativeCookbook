@@ -64,21 +64,20 @@ class Home extends Component {
 
   render() {
     const { forYou, played, popular } = this.state;
-
     //  can use push to add new detail to the stack
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
 
     return (
       <View style={styles.container}>
-        <View>
+        {/* <View>
           <Button title='Home' onPress={() => navigate('Home')} />
           <Button title='Details' onPress={() => navigate('Detail')} />
           <Button title='Page3' onPress={() => navigate('Page3')} />
           <Button title='Page4' onPress={() => navigate('Page4')} />
-        </View>
+        </View> */}
         <View style={{ flex: 1 }}>
           {/* //style stops scrollview bounce */}
-          <Text>Home Screen</Text>
+          {/* <Text>Home Screen</Text> */}
           <ScrollView>
             {this.renderSelection(forYou)}
             {this.renderSelection(played)}

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Image } from 'react-native';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import styles from '../styles/Styles';
+
+/*********************
+  Commented out sections of code are the code from the
+  tip I have ommitted for the refactors so this works
+  with React Navigation
+*********************/
 
 // const { object } = PropTypes;
 const root = 'https://s3.amazonaws.com/crysfel/public/book/01/07';
@@ -28,17 +34,17 @@ class Detail extends Component {
 
     return (
       <View style={styles.container}>
-        <Button title='Home' onPress={() => navigate('Home')} />
+        {/* <Button title='Home' onPress={() => navigate('Home')} />
         <Button title='Detail' onPress={() => navigate('Detail')} />
         <Button title='Page3' onPress={() => navigate('Page3')} />
         <Button title='Page4' onPress={() => navigate('Page3')} />
-        <Text>Detail Screen</Text>
+        <Text>Detail Screen</Text> */}
           <View style={styles.info}>
             <Image
               source={{ uri: `${root}/${image}` }}
-              style={styles.image}
+              style={styles.detailImage}
             />
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.detailTitle}>{title}</Text>
             <View style={styles.playContainer}>
               <Text style={styles.play}>Play song</Text>
             </View>
