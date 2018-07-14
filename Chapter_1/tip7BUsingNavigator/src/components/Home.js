@@ -5,8 +5,8 @@ import { View,
          Image,
          ScrollView,
          TouchableHighlight, } from 'react-native';
-import styles from './styles/Styles';
-import songs from './songs';
+import styles from '../styles/Styles';
+import songs from '../config/songs';
 
 class Home extends Component {
   static navigationOptions = {
@@ -20,13 +20,17 @@ class Home extends Component {
   };
 
   onSelectSong(song) {
-    this.props.navigation.push(song);
+    console.log(song.title, song.image);
+    this.props.navigation.push('Detail', {
+      title: song.title,
+      image: song.image,
+    });  //  seperate function is redundant
   }
 
   renderSong(section, song, index) {
     return (
       <TouchableHighlight
-        // onPress={() => this.onSelectSong(song)}
+        onPress={() => this.onSelectSong(song)}
         style={styles.song} key={index}
       >
         <View>

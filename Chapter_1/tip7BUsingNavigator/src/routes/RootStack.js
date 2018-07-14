@@ -1,8 +1,8 @@
 import { createStackNavigator } from 'react-navigation';
-import Home from './Home';
-import Detail from './Detail';
-import Page3 from './Page3';
-import Page4 from './Page4';
+import Home from '../components/Home';
+import Detail from '../components/Detail';
+import Page3 from '../components/Page3';
+import Page4 from '../components/Page4';
 
 //  Main stack navigator.  All routes must be added here in order
 //  to function

@@ -2,15 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#0c1b1a',
+    flex: 1,
   },
-  title: {
-    backgroundColor: '#37b298',
-    color: '#fff',
-    padding: 10,
-    textAlign: 'center',
-    fontSize: 18,
+  detailImage: {
+    borderRadius: 75,
+    height: 150,
+    width: 150,
+  },
+  image: {
+    height: 120,
+    width: 120,
   },
   section: {
     padding: 10,
@@ -24,10 +26,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#081412',
     marginRight: 10,
   },
-  image: {
-    width: 120,
-    height: 120,
-  },
   songTitle: {
     color: '#f1f1f1',
     fontWeight: '200',
@@ -36,6 +34,14 @@ const styles = StyleSheet.create({
     padding: 5,
     width: 100,
   },
+  title: {
+    backgroundColor: '#37b298',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 18,
+    padding: 10,
+  },
+
 });
 
 export default styles;
