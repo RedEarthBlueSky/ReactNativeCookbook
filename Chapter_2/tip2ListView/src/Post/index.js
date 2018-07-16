@@ -6,19 +6,18 @@ import styles from './styles';
 const imageRoot = 'https://s3.amazonaws.com/crysfel/public/book/02/01';
 
 const Post = ({ content, img, title }) => {
-  console.log(`${imageRoot}/${img}`);
   return (
-    <View style={styles.image}>
+    <View style={styles.main}>
       <Image
-        source={`${imageRoot}/${img}`}
+        source={{ uri: `${imageRoot}/${img}` }}
         style={styles.image}
       />
-      <View styles={styles.content}>
+      <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Text>{content}</Text>
       </View>
       <TouchableOpacity style={styles.button} activeOpacity={0.8}>
-        <Text style={styles.buttonText}>Read More</Text>
+        <Text style={styles.buttonText}>Read more</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, Text, ListView, StyleSheet } from 'react-native';
 import Post from './Post';
 import data from './data.json';
-import styles from './Post/styles';
 
 class MainApp extends Component {
   constructor(props) {
@@ -18,13 +17,13 @@ class MainApp extends Component {
   }
 
   render() {
-    // console.log(data.posts)
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.title}>Latest Posts</Text>
+        <View style={styles.toolbar}>
+          <Text style={styles.title}>Latest posts</Text>
         </View>
         <ListView
+          horizontal
           dataSource={this.state.dataSource}
           renderRow={post => <Post {...post} />}
           style={styles.list}
@@ -33,6 +32,33 @@ class MainApp extends Component {
       </View>
     );
   }
-}
+  }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  list: {
+    backgroundColor: '#f0f3f4',
+    flex: 1,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  content: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  toolbar: {
+    backgroundColor: '#34495e',
+    padding: 10,
+    paddingTop: 20,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  });
 
 export default MainApp;
