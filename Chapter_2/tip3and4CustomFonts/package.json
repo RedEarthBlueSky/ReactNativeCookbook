@@ -1,14 +1,17 @@
 {
-  "name": "tip3CustomFontsIos",
+  "name": "tip3and4CustomFonts",
   "version": "0.0.1",
   "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
-    "eslint-config-rallycoding": "^3.2.0",
-    "prop-types": "^15.6.2",
     "react": "16.4.1",
     "react-native": "0.56.0"
   },
