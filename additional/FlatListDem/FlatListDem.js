@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import { List, ListItem, SearchBar } from 'react-native-elements';
 
 class FlatListDem extends Component {
   constructor(props) {
@@ -40,10 +40,43 @@ class FlatListDem extends Component {
       });
   };
 
-  render() {
-    console.log(this.state);
+  renderSeparator = () => {
     return (
-      <List style={styles.containerStyle}>
+      <View
+        style={{
+          padding: 1,
+          height: 1,
+          width: '86%',
+          backgroundColor: '#CED0CE',
+          marginLeft: '14%',
+        }}
+      />
+    );
+  };
+
+  renderHeader = () => {
+    return <SearchBar placeholder='SearchBar placeholder text' lightTheme round />;
+  };
+
+  renderFooter = () => {
+    if (!this.state.loading) return null;
+    return (
+      <View
+        style={{
+          paddingVertical: 20,
+          borderTopWidth: 1,
+          borderColor: '#CED0CD'
+        }}
+      >
+        <ActivityIndicator animating size='large' />
+      </View>
+    );
+  };
+
+  render() {
+
+    return (
+      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
@@ -52,11 +85,13 @@ class FlatListDem extends Component {
               title={`${item.name.first} ${item.name.last}`}
               subtitle={item.email}
               avatar={{ uri: item.picture.thumbnail }}
-              containerStyle={{ borderBottomWidth: 0, }}
+              containerStyle={{ borderBottomWidth: 0 }}
             />
           )}
           keyExtractor={(item) => item.email}
-          ItemSeperatorComponent={this.renderSeparator}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
+          ListFooterComponent={this.renderFooter}
         />
       </List>
     );
@@ -65,8 +100,8 @@ class FlatListDem extends Component {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
+  },
+  separator: {
   }
 });
 
