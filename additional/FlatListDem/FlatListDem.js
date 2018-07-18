@@ -7,7 +7,7 @@ class FlatListDem extends Component {
     super(props);
 
     this.state = {
-      loading: false,
+      loading: true,
       data: [],
       page: 1,
       seed: 1,
@@ -23,7 +23,7 @@ class FlatListDem extends Component {
   makeRemoteRequest = () => {
     const { page, seed } = this.state;
     const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
-    this.setState({ loading: true });
+    // this.setState({ loading: true });
 
     fetch(url)
       .then(res => res.json())
@@ -55,11 +55,11 @@ class FlatListDem extends Component {
   };
 
   renderHeader = () => {
-    return <SearchBar placeholder='SearchBar placeholder text' lightTheme round />;
+    return <SearchBar placeholder='Type here' lightTheme round />;
   };
 
   renderFooter = () => {
-    if (!this.state.loading) return null;
+    if (this.state.loading === false) return null;
     return (
       <View
         style={{
@@ -74,7 +74,6 @@ class FlatListDem extends Component {
   };
 
   render() {
-
     return (
       <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
