@@ -12,7 +12,7 @@ class FlatListDem extends Component {
       page: 1,
       seed: 1,
       error: null,
-      refreshing: false
+      refreshing: false,
     };
   }
 
@@ -32,12 +32,26 @@ class FlatListDem extends Component {
           data: page === 1 ? res.results : [...this.state.data, ...res.results],
           error: res.error || null,
           loading: false,
-          refreshing: false
+          refreshing: false,
         });
       })
       .catch(error => {
-        this.setState({ error, loading: false });
+        this.setState({ error, loading: false, refreshing: false, });
       });
+  };
+
+  handleRefresh = () => {
+    this.setState(
+      {
+        loading: true,
+        page: 1,
+        seed: this.state.seed + 1,
+        refreshing: true,
+      },
+      () => {
+        this.makeRemoteRequest(); // second callback function after state update
+      }
+    );
   };
 
   renderSeparator = () => {
@@ -91,6 +105,8 @@ class FlatListDem extends Component {
           ItemSeparatorComponent={this.renderSeparator}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
+          onRefresh={this.handleRefresh}
+          refreshing={this.state.refreshing}
         />
       </List>
     );
