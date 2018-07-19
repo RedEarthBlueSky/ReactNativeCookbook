@@ -1,10 +1,12 @@
 ### CHAPTER TWO Tip Seven ###
 ## Detecting Orientation Changes ##
+#Icon titles can be viewed based upon the orientation#
 
 Render different UI Components based upon the device's orientation.  
 Here a menu system based on screen orientation, using the third party library
 
 ##### react-native-Orientation #####
+#ALL of this shit complete smashes the build, deleted it and now builds#
 
 Add library and then the configuration, go to
 
