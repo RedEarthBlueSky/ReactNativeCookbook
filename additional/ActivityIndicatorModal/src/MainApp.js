@@ -21,7 +21,9 @@ class MainApp extends Component {
       <View style={styles.container}>
         <Loader
           animationType={'none'}
+          color={'blue'}
           loading={this.state.loading}
+          size={'small'}
           transparent
         />
       <Text style={styles.titleText}>Infinity Yoga Brookhaven</Text>
