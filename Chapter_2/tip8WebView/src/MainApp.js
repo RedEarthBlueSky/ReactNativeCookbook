@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Header, Wrapper, Section, Loader } from './components/common';
+import BrowserView from './BrowserView';
 
 class MainApp extends Component {
   constructor(props) {
@@ -33,29 +34,26 @@ class MainApp extends Component {
     title: 'Home Page',
   };
 
-  renderScene = (route, navigate) => {
-    return (
-      <View style={styles.content}>
-        <Text>Home</Text>
-        <View>
-          {this.state.links.map(this.renderButton)}
-        </View>
-      </View>
-    );
-  };
+  onPressButton(page) {
+    this.props.navigation.push({ page });
+  }
 
   renderButton = (btn, index) => {
-    console.log(btn);
+    console.log(btn)
+    const { push } = this.props.navigation;
     return (
-      <TouchableOpacity key={index} style={styles.btn} >
-        <Button title={btn.title} onPress={() => console.log(btn.url)} />
+      <TouchableOpacity
+        key={index}
+        style={styles.btn}
+      >
+        <Button
+          style={styles.text}
+          title={btn.title}  //  links.title
+          onPress={() => push('BrowserView', { url: btn.url, })}
+        />
       </TouchableOpacity>
     );
   };
-
-  onPressButton(url) {
-    this.props.navigation.push(url);
-  }
 
   render() {
     return (
@@ -64,7 +62,7 @@ class MainApp extends Component {
           animationType={'none'}
           color={'blue'}
           loading={this.state.loading}
-          size={60}  //  numeric value for this loader
+          size={60}  // numeric value for this loader
           transparent
         />
         <Header titleText='Chapter 2 Tip 9' subTitleText='Web View'>
@@ -104,6 +102,7 @@ const styles = StyleSheet.create({
 export default createStackNavigator(
   {
     Home: MainApp,
+    BrowserView,
   },
   {
     initialRouteName: 'Home',
