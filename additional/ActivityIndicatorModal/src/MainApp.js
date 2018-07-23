@@ -11,19 +11,20 @@ class MainApp extends Component {
 
   async search(query) {
     const encodedAddress = encodeURIComponent(query);
-
-    const url = `https;//maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
-
+    console.log(encodedAddress);
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
+    console.log(url);
     try {
       const response = await fetch(url);
-      console.log(response);
 
       if (response.status > 400) {
         console.log('We have a 400 error');
         this.setState({ loading: false });
-      } else {
-        return await response.json();
       }
+      if (response.status === 200) {
+        console.log('200 Error');
+      }
+      return await response.json();
     } catch (e) {
       console.log('We have a catch error');
       this.setState({ loading: false });
@@ -36,7 +37,7 @@ class MainApp extends Component {
       loading: true,
     });
 
-    let coords = await this.search(query);
+    const coords = await this.search(query);
     console.log('coords', coords);
 
     setTimeout(() => {
