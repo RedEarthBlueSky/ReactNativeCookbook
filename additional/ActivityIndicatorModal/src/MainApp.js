@@ -1,19 +1,50 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
-import { Wrapper, Header, Button, Loader } from './components/common';
+import { View, Text } from 'react-native';
+import { Button, Loader } from './components/common';
+import styles from './styles/styles';
 
 class MainApp extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      loading: false,
-      address: '',
-    };
+    this.state = { loading: false, address: '', };
   }
 
-  getCoordinates(query) {
-    console.log('Start loading animation');
+  async search(query) {
+    const encodedAddress = encodeURIComponent(query);
+
+    const url = `https;//maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
+
+    try {
+      const response = await fetch(url);
+      console.log(response);
+
+      if (response.status > 400) {
+        console.log('We have a 400 error');
+        this.setState({ loading: false });
+      } else {
+        return await response.json();
+      }
+    } catch (e) {
+      console.log('We have a catch error');
+      this.setState({ loading: false });
+    }
+  }
+
+
+  async getCoordinates(query) {
+    this.setState({
+      loading: true,
+    });
+
+    let coords = await this.search(query);
+    console.log('coords', coords);
+
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        address: coords.results[0].formatted_address,
+      });
+    }, 2000);
   }
 
   render() {
@@ -32,36 +63,10 @@ class MainApp extends Component {
           style={styles.buttonStyle}
           title='Get Address'
         />
-      <Text style={styles.addressText}>{`Addresss: ${this.state.address}`}</Text>
+      <Text style={styles.addressText}>{`${this.state.address}`}</Text>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  buttonStyle: {
-    fontWeight: 'bold',
-    borderRadius: 2,
-    backgroundColor: '#333333',
-  },
-  container: {
-    backgroundColor: '#CCCCCC',
-    height: Dimensions.get('window').height,
-    padding: 15,
-    display: 'flex',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingTop: 50
-  },
-  titleText: {
-    fontSize: 24,
-    paddingBottom: 20,
-    fontWeight: 'bold'
-  },
-  addressText: {
-    fontSize: 18,
-    paddingBottom: 10,
-  }
-});
 
 export default MainApp;

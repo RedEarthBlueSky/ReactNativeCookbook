@@ -7,3 +7,5 @@ will show and hide as needed.
 
 Other animation indicators
 https://github.com/n4kz/react-native-indicators
+
+The loader works but the logic of the request is whack and I don't have the time to debug it
