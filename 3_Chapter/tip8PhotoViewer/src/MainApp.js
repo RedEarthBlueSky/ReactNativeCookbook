@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Dimensions,
-  Image,
   Text,
   ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
-// import PostContainer from './PostContainer';
-// import PhotoViewer from './PhotoViewer';
+import PostContainer from './PostContainer';
+import PhotoViewer from './PhotoViewer';
 
 const path = 'https://s3.amazonaws.com/crysfel/public/book/03/08';
 const timeline = [
@@ -19,24 +17,76 @@ const timeline = [
 ];
 
 class MainApp extends Component {
+  
+  state = {
+    selected: null,
+    position: null,
+  };
+
+  showImage = (selected, position) => {
+    this.setState({
+      selected,
+      position,
+    });
+  }
+
+  closeViewer = () => {
+    this.setState({
+      selected: null,
+      position: null,
+    });
+  }
+
+  renderViewer() {
+    const { selected, position } = this.state;
+
+    if (selected) {
+      return (
+        <PhotoViewer
+          post={selected}
+          position={position}
+          onClose={this.closeViewer}
+        />
+      );
+    }
+  }
+
   render() {
     return (
-      <View>
-        <Text style={styles.toolbar}>Ch 3:  Tip 8 - Timeline Photo Viewer</Text>
+      <View style={styles.main}>
+        <Text style={styles.toolbar}>Timeline</Text>
+        <ScrollView style={styles.content}>
+          {
+            timeline.map((post, index) =>
+              <PostContainer
+                key={index}
+                post={post}
+                onPress={this.showImage}
+              />
+            )
+          }
+        </ScrollView>
+        {this.renderViewer()}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  main: {
+    backgroundColor: '#ecf0f1',
+    flex: 1,
+  },
   toolbar: {
-    fontSize: 16,
-    padding: 10,
-    marginTop: 20,
-    fontWeight: 'bold',
+    backgroundColor: '#2c3e50',
     color: '#fff',
-    backgroundColor: 'blue',
-  }
+    fontSize: 22,
+    padding: 20,
+    textAlign: 'center',
+  },
+  content: {
+    flex: 1,
+  },
 });
 
 export default MainApp;
