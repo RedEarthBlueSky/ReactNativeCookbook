@@ -19,10 +19,74 @@ class MainApp extends PureComponent {
     url: '',
   };
 
+  onLoad = async () => {
+    this.setState({ result: 'Loading, please wait...' });
+
+    const response = await fetch(endpoint, { method: 'GET' });
+
+    const result = await response.text();
+
+    this.setState({ result });
+  }
+
+  onSave = async () => {
+    const { title, url } = this.state;
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+      },
+      body: JSON.stringify({
+        category_id: 1,
+        title,
+        url,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success === false) {
+      Alert.alert('Error', 'There was an error while saving the bookmark!');
+    } else {
+      Alert.alert('Success', 'Bookmark sucessfully saved');
+      this.onLoad();
+    }
+  };
+
+  onTitleChange = (title) => this.setState({ title });
+  onUrlChange = (url) => this.setState({ url });
+
   render() {
+    const { result, title, url } = this.state;
+
     return (
-      <View>
-        <Text style={styles.title}>Ch 4: Tip 3 - Post Data to a remote API</Text>
+      <View style={styles.container}>
+        <Text style={styles.toolbar}>Add a new bookmark</Text>
+        <ScrollView style={styles.content} >
+          <TextInput
+            style={styles.input}
+            onChangeText={this.onTitleChange}
+            value={title}
+            placeholder='Write title here...'
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={this.onUrlChange}
+            value={url}
+            placeholder='Write URL here...'
+          />
+          <TouchableOpacity onPress={this.onSave} style={styles.btn}>
+            <Text>Save!</Text>
+          </TouchableOpacity>
+          <TextInput
+            style={styles.preview}
+            value={result}
+            placeholder='Result...'
+            editable={false}
+            multiline
+          />
+        </ScrollView>
       </View>
     );
   }
@@ -36,6 +100,41 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     marginTop: 30,
     padding: 10,
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    marginTop: 20,
+  },
+  toolbar: {
+    backgroundColor: '#3498db',
+    color: '#fff',
+    textAlign: 'center',
+    padding: 25,
+    fontSize: 30,
+  },
+  content: {
+    flex: 1,
+    padding: 10,
+  },
+  preview: {
+    backgroundColor: '#bdc3c7',
+    flex: 1,
+    height: 500,
+  },
+  input: {
+    backgroundColor: '#ecf0f1',
+    borderRadius: 3,
+    height: 40,
+    padding: 5,
+    marginBottom: 10,
+    flex: 1,
+  },
+  btn: {
+    backgroundColor: '#3498db',
+    padding: 10,
+    borderRadius: 3,
+    marginBottom: 30,
   },
 });
 
