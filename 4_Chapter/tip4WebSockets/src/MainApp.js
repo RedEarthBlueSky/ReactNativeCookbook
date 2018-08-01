@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
   Dimensions,
   ScrollView,
-  TextInput,
   StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -22,11 +22,19 @@ class MainApp extends Component {
     this.ws.onmessage = this.onMessageReceived;
     this.ws.onerror = this.onError;
     this.ws.onclose = this.onClose;
-    console.log('Component Did Mount');
   }
 
   onOpenConnection = () => {
-    console.log('Connection Open!');
+    console.log('Open!');
+  }
+
+  onMessageReceived = (event) => {
+    this.setState({
+      history: [
+        ...this.state.history,
+        { owner: false, msg: event.data },
+      ],
+    });
   }
 
   onError = (event) => {
@@ -35,15 +43,6 @@ class MainApp extends Component {
 
   onClose = (event) => {
     console.log('onclose', event.code, event.reason);
-  }
-
-  onMessageReceived = (event) => {
-    this.setState({
-      history: [
-        ...this.state.history,
-        { owner: false, msg: event.data }
-      ],
-    });
   }
 
   onSendMessage = () => {
@@ -63,7 +62,7 @@ class MainApp extends Component {
     this.setState({ text });
   }
 
-  renderMessage(item, index) {
+  renderMessage(item, index){
     const kind = item.owner ? styles.me : styles.friend;
 
     return (
@@ -75,18 +74,16 @@ class MainApp extends Component {
 
   render() {
     const { history, text } = this.state;
-    const { title, container, toolbar, content,
-      msg, inputContainer, input } = styles;
 
     return (
-      <View style={container}>
-        <Text style={title}>Ch4 Tip4 - Web Sockets Real Time comms! </Text>
-        <ScrollView style={content}>
-          { history.map(this.renderMessage)}
+      <View style={styles.container}>
+        <Text style={styles.toolbar}>Simple Chat</Text>
+        <ScrollView style={styles.content}>
+          { history.map(this.renderMessage) }
         </ScrollView>
-        <View style={inputContainer}>
+        <View style={styles.inputContainer}>
           <TextInput
-            style={input}
+            style={styles.input}
             value={text}
             onChangeText={this.onChangeText}
             onSubmitEditing={this.onSendMessage}
@@ -98,14 +95,6 @@ class MainApp extends Component {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
-    backgroundColor: 'blue',
-    padding: 10,
-    marginTop: 30,
-  },
   container: {
     backgroundColor: '#ecf0f1',
     flex: 1,

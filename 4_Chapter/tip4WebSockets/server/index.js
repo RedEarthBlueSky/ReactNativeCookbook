@@ -11,7 +11,7 @@ wss.on('connection', (ws) => {
     wss.clients.forEach(client => {
       if (client !== ws) {
         console.log('Client does not equal websockets');
-        client.sent(message);
+        client.send(message);
       }
     });
   });
