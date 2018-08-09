@@ -10,7 +10,8 @@
     "eslint-config-rallycoding": "^3.2.0",
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-fbsdk": "^0.7.0"
+    "react-native-fbsdk": "^0.7.0",
+    "realm": "^2.14.2"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
