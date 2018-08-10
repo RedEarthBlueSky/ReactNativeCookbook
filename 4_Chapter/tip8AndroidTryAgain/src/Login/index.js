@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Alert, StyleSheet } from 'react-native';
 import FBSDK, { LoginButton } from 'react-native-fbsdk';
 
+const KeystorePW = 'ga0RGNYHvNM5d0SLGQfpQWAPGJ8=';
+
 class Login extends Component {
   render() {
     return (
