@@ -1,7 +1,6 @@
-//  contain all the actions needed in the module
-//  an action is a payload of information that sends
-//  data to the store and is the way views send of request
-//  data to the global state
+//  all actions needed in module - basically a CRUD for bookmarks
+//  an action is a payload of information that sends data to the store and is the way
+//  views send of request data to the global state
 export const LOAD_BOOKMARKS = 'bookmarks/load';
 export const ADD_BOOKMARK = 'bookmarks/add';
 export const REMOVE_BOOKMARK = 'bookmarks/remove';
