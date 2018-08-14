@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import store from './redux';
 
 class MainApp extends Component {
   render() {

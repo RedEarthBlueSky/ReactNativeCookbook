@@ -1,5 +1,3 @@
-//  reducer holds code to define how data will be stored in the global state
-
 import {
   LOAD_BOOKMARKS,
   ADD_BOOKMARK,
@@ -7,13 +5,11 @@ import {
   UPDATE_BOOKMARK,
 } from './actions';
 
-//  define the initial state
 const initialState = {
   bookmarks: [],
 };
 
-//  reducer function accepts current state and dispatched action
-export function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_BOOKMARKS:
       return {
@@ -24,6 +20,11 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         bookmarks: [...state.bookmarks, action.payload],
+      };
+    case REMOVE_BOOKMARK:
+      return {
+        ...state,
+        bookmarks: state.bookmarks.filter(bookmark => bookmark.id !== action.payload.id),
       };
     case UPDATE_BOOKMARK:
       return {
