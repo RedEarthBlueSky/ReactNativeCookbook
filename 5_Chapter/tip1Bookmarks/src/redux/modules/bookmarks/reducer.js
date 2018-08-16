@@ -9,12 +9,12 @@ const initialState = {
   bookmarks: [],
 };
 
-export default function reducer(state = initialState, action) {
+export default function reducer(state= initialState, action) {
   switch (action.type) {
     case LOAD_BOOKMARKS:
       return {
         ...state,
-        bookmarks: [...action.payload]
+        bookmarks: [...action.payload],
       };
     case ADD_BOOKMARK:
       return {
@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         bookmarks: state.bookmarks.map(bookmark => {
-          if (bookmark.id === action.payload.id) {
+          if(bookmark.id === action.payload.id) {
             return {
               ...action.payload,
             };

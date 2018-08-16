@@ -1,40 +1,20 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import fetchMiddleware from './middleware/fetchMiddleware';
 import bookmarks from './modules/bookmarks/reducer';
+import categories from './modules/categories/reducer';
 
 const reducers = combineReducers({
   bookmarks,
+  categories,
 });
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(fetchMiddleware));
 export default store;
 
-// These will lines are just for testing and will be removed
-// on the next recipe.
-import {
-  loadBookmarks,
-  addBookmark,
-  removeBookmark,
-  updateBookmark,
-} from './modules/bookmarks/actions';
-
-const unsubscribe = store.subscribe(() => {
+// These lines of code will be removed on the next recipe
+import { loadCategories } from './modules/categories/actions';
+const unsubscribe = store.subscribe(() =>
   console.log(store.getState())
-});
+);
 
-store.dispatch(loadBookmarks());
-
-store.dispatch(addBookmark({
-  id: 2,
-  title: 'One more',
-  url: 'http://other.com',
-}));
-
-store.dispatch(updateBookmark({
-  id: 2,
-  title: 'one more edited',
-  url: 'http://other-edit.com',
-}));
-
-store.dispatch(removeBookmark({ id: 1 }));
-
-unsubscribe();
+store.dispatch(loadCategories());
