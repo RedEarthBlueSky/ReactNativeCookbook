@@ -2,7 +2,7 @@
 export default function fetchMiddleware({ dispatch, getState }) {
   return next => action => {
     const { promise, types, ...rest } = action;
-
+    console.log(action);
     if (!promise) {
       return next(action);
     }
