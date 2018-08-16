@@ -22,16 +22,19 @@ const unsubscribe = store.subscribe(() => {
 });
 
 store.dispatch(loadBookmarks());
+
 store.dispatch(addBookmark({
   id: 2,
   title: 'One more',
   url: 'http://other.com',
 }));
+
 store.dispatch(updateBookmark({
   id: 2,
   title: 'one more edited',
   url: 'http://other-edit.com',
 }));
+
 store.dispatch(removeBookmark({ id: 1 }));
 
 unsubscribe();

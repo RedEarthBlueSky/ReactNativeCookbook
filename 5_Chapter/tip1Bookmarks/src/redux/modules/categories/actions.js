@@ -14,6 +14,7 @@ export function loadCategories() {
       LOAD_CATAGORIES_SUCCESS,
     ],
     promise: {
+      //  define headers here and other options the fetch method accepts
       url: 'https://my-bookmarks-api.herokuapp.com/api/categories',
       method: 'GET',
     }
