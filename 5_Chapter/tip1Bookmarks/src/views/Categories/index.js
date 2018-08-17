@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { loadCategories } from '../../redux/modules/categories/actions';
@@ -34,6 +35,11 @@ class Categories extends Component {
   }
 
   render() {
+
+    if (this.props.isOnline === false) {
+      Alert.alert('Offline', 'You don\'t have an internet connection');
+    }
+
     return (
       <View style={styles.container}>
         <Text style={styles.toolbar}>Categories</Text>
@@ -72,7 +78,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     categories: state.categories.all,
-  };
+    isOnline: state.network.isOnline,
+  }
 }
 
 export default connect(mapStateToProps)(Categories);

@@ -1,16 +1,17 @@
-//  Categories reducer
-import { LOAD_CATEGORIES_SUCCESS } from './actions';
+//  Network reducer
+import { NETWORK_CHANGE } from './actions';
 
 const initialState = {
-  all: [],
+  isOnline: null,
+  isOffline: null,
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_CATEGORIES_SUCCESS:
+    case NETWORK_CHANGE:
       return {
         ...state,
-        all: [...action.payload.categories],
+        ...action.payload,
       };
     default:
       return state;

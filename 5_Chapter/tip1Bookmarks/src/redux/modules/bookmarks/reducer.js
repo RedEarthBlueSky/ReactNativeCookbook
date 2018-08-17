@@ -1,3 +1,4 @@
+//  Bookmarks reducer
 import {
   LOAD_BOOKMARKS,
   ADD_BOOKMARK,

@@ -1,3 +1,4 @@
+//  Bookmarks reducer
 export const LOAD_BOOKMARKS = 'bookmarks/load';
 export const ADD_BOOKMARK = 'bookmarks/add';
 export const REMOVE_BOOKMARK = 'bookmarks/remove';
