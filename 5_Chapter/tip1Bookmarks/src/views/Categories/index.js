@@ -21,7 +21,8 @@ class Categories extends Component {
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.categories),
     };
-    this.props.dispatch(loadCategories());
+    // commenting out this line proves data has persisted
+    // this.props.dispatch(loadCategories());
   }
 
   componentWillReceiveProps(nextProps) {
