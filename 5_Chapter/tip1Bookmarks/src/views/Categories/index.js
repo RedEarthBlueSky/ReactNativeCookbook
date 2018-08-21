@@ -17,6 +17,10 @@ class Categories extends Component {
     categories: propTypes.array,
   };
 
+  state = {
+    shouldLoad: false,
+  };
+
   componentWillMount() {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
