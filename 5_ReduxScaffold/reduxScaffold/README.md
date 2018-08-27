@@ -22,3 +22,12 @@ reducer.js - code to manage all the data.
 
 index.js - public actions.  There are public and private actions.  Private actions
 are only required within the module itself.
+
+the store
+a single global object that can be accessed via getState
+bring together the actions and reducer, use the actions to save data on the stored
+Log changes on the state by subscribing to the store changes.
+
+dispatch
+the dispatch method takes an action, created by the loadBookmarks function.  This
+calls the reducer to set the new bookmarks to the state.

@@ -6,6 +6,8 @@ import {
   Text,
 } from 'react-native';
 
+import store from './redux';
+
 const instructions = Platform.select({
   ios: 'iOS Specific Build',
   android:

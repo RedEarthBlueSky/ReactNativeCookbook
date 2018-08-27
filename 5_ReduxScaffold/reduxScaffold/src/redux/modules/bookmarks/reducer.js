@@ -9,7 +9,7 @@ const initialState = {
   bookmarks: [],
 };
 
-//  in each case we create a new state object with new data.  
+//  in each case we create a new state object with new data.
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_BOOKMARKS:
@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
     case ADD_BOOKMARK:
       return {
         ...state,
-        bookmarks: [...state.bookmarks, ...action.payload],
+        bookmarks: [...state.bookmarks, action.payload],
       };
     case REMOVE_BOOKMARK:
       return {
