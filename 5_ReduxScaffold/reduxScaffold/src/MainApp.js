@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 
 const instructions = Platform.select({
-  ios: 'iOS Specific',
+  ios: 'iOS Specific Build',
   android:
-    'Android Specific',
+    'Android Specific Build',
 });
 
 class MainApp extends Component {
@@ -31,13 +31,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     padding: 10,
-    marginTop: 30,
     ...Platform.select({
       ios: {
         backgroundColor: 'blue',
+        marginTop: 25,
       },
       android: {
         backgroundColor: 'green',
+        marginTop: 0,
       },
     }),
   }
