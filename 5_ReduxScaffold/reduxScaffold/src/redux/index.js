@@ -1,44 +1,26 @@
-//  Redux index.js filter
+//  Redux index.js file
+//  This is the Redux store
 
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import bookmarks from './modules/bookmarks/reducer';
 import categories from './modules/categories/reducer';
+import fetchMiddleware from './middleware/fetchMiddleware';
 
-import {
-  loadBookmarks,
-  addBookmark,
-  updateBookmark,
-  removeBookmark,
-} from './modules/bookmarks/actions';
+import { loadCategories } from './modules/categories/actions';
 
 //  use combineReducers to merge all the reducers into a single global object
 //  that will be saved in the store
 const reducers = combineReducers({
   bookmarks,
-  categories, 
+  categories,
 });
-const store = createStore(reducers);
+
+const store = createStore(reducers, applyMiddleware(fetchMiddleware));
 
 const unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 );
 
-store.dispatch(loadBookmarks());
-
-store.dispatch(addBookmark({
-  id: 2,
-  title: 'One more',
-  url: 'http://other.com',
-}));
-
-store.dispatch(updateBookmark({
-  id: 2,
-  title: 'one more edited',
-  url: 'http://other-edit.com',
-}));
-
-store.dispatch(removeBookmark({ id: 1 }));
-
-unsubscribe();
+store.dispatch(loadCategories());
 
 export default store;

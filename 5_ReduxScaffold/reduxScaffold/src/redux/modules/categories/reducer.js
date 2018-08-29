@@ -10,10 +10,10 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CATEGORIES_SUCCESS:
-    return {
-      ...state,
-      all: [...action.payload.categories],
-    };
+      return {
+        ...state,
+        all: [...action.payload.categories],
+      };
     default:
       return state;
   }

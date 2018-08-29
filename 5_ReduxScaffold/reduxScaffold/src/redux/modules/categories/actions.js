@@ -1,18 +1,17 @@
-export const LOAD_CATAGORIES = 'categ/LOAD_CATAGORIES';
-export const LOAD_CATAGORIES_SUCCESS = 'categ/LOAD_CATAGORIES_S';
-export const LOAD_CATAGORIES_FAIL = 'categ/LOAD_CATAGORIES_F';
+export const LOAD_CATEGORIES = 'categ/LOAD_CATEGORIES';
+export const LOAD_CATEGORIES_SUCCESS = 'categ/LOAD_CATEGORIES_S';
+export const LOAD_CATEGORIES_FAIL = 'categ/LOAD_CATEGORIES_F';
 
-const URL = 'https://my-bookmarks-api.herokuapp.com/api/categories';
 
 export function loadCategories() {
   return {
     types: [
-      LOAD_CATAGORIES,
-      LOAD_CATAGORIES_SUCCESS,
-      LOAD_CATAGORIES_FAIL,
+      LOAD_CATEGORIES,
+      LOAD_CATEGORIES_SUCCESS,
+      LOAD_CATEGORIES_FAIL,
     ],
     promise: {
-      url:  URL,
+      url: 'https://my-bookmarks-api.herokuapp.com/api/categories',
       method: 'GET',
     },
   };
