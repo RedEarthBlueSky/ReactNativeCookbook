@@ -2,6 +2,7 @@
 
 import { combineReducers, createStore } from 'redux';
 import bookmarks from './modules/bookmarks/reducer';
+import categories from './modules/categories/reducer';
 
 import {
   loadBookmarks,
@@ -12,7 +13,10 @@ import {
 
 //  use combineReducers to merge all the reducers into a single global object
 //  that will be saved in the store
-const reducers = combineReducers({ bookmarks, });
+const reducers = combineReducers({
+  bookmarks,
+  categories, 
+});
 const store = createStore(reducers);
 
 const unsubscribe = store.subscribe(() =>

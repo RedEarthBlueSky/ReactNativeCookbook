@@ -1,4 +1,4 @@
-
+//  Define a new action creator to call our new middleware
 export default function fetchMiddleware({ dispatch, getState }) {
 //  the function returns another function to be executed between
 //  the action dispatch right before action gets into the reducer
