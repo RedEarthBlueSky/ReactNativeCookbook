@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Platform,
   StyleSheet,
   View,
   Text,
 } from 'react-native';
+//  Provide access to the store for any child component(s)
+import { Provider } from 'react-redux';
 
 import store from './redux';
+import AppNavigator from './views/AppNavigator';
 
 const instructions = Platform.select({
   ios: 'iOS Specific Build',
@@ -14,14 +17,15 @@ const instructions = Platform.select({
     'Android Specific Build',
 });
 
-class MainApp extends Component {
-  render() {
+const MainApp = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Redux Scaffold {instructions}</Text>
+        <Provider store={store}>
+          <AppNavigator />
+        </Provider>
       </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
