@@ -19,11 +19,11 @@ class Categories extends Component {
   };
 
   componentWillMount() {
-    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.categories),
     };
-    this.props.dispatch(loadCategories());
+    // this.props.dispatch(loadCategories());
   }
 
   componentWillReceiveProps(nextProps) {
