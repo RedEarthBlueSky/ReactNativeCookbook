@@ -1,6 +1,7 @@
 //  Views Categories main file index.js
 import React, { Component } from 'react';
 import {
+        Alert,
         ListView,
         Platform,
         StyleSheet,
@@ -23,7 +24,8 @@ class Categories extends Component {
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.categories),
     };
-    // this.props.dispatch(loadCategories());
+    // comment out to test persist store
+    this.props.dispatch(loadCategories());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,6 +37,11 @@ class Categories extends Component {
   }
 
   render() {
+    if (this.props.isOnline === false) {
+      Alert.alert('Offline', 'You don\'t have an internet connection');
+    }
+    // Alert.alert('Online', 'You have an internet connection');
+    
     return (
       <View style={styles.container}>
         <Text style={styles.toolbar}>Categories</Text>
@@ -74,6 +81,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     categories: state.categories.all,
+    isOnline: state.network.isOnline,
   };
 }
 

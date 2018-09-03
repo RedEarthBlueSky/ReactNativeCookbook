@@ -1,15 +1,39 @@
 //  Views AppNavigator main file index.js
 import React, { Component } from 'react';
-import Categories from '../Categories';
+import { connect } from 'react-redux';
 import {
         View,
         Text,
         Platform,
-        StyleSheet
+        StyleSheet,
+        NetInfo,
       } from 'react-native';
 import { Navigator } from 'react-native-deprecated-custom-components';
+import Categories from '../Categories';
+import { setConnectivity } from '../../redux/modules/network/actions';
 
 class AppNavigator extends Component {
+
+  componentWillMount() {
+    NetInfo.addEventListener(
+      'change',
+      this.onConnectivityChange,
+    );
+  }
+
+  componentWillUnmount() {
+    NetInfo.removeEventListener(
+      'change',
+      this.onConnectivityChange,
+    );
+  }
+
+  // connectivity change callback function, dispatch action creator
+  // to set new status on redux this.state
+  onConnectivityChange = (reach) => {
+    this.props.dispatch(setConnectivity(reach));
+  }
+
 
   renderScene(route, navigator) {
     return <Categories navigator={navigator} />;
@@ -31,4 +55,4 @@ class AppNavigator extends Component {
   }
 }
 
-export default AppNavigator;
+export default connect()(AppNavigator);
