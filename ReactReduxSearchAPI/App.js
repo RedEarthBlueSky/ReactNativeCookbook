@@ -15,8 +15,8 @@ class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>React Native: {instructions}</Text>
         <Search />
+        <Text style={styles.welcome}>React Native: {instructions}</Text>
         <NotesMain />
       </View>
     );

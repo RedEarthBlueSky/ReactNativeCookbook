@@ -11,6 +11,7 @@ const appStyles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    marginTop: 0,
   },
   instructions: {
     textAlign: 'center',

@@ -1,6 +1,6 @@
 // notes main feature Component
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
 import Notes from './components/Notes';
 import Action from './components/Action';
@@ -15,12 +15,18 @@ class NotesMain extends Component {
         { id: 3, body: 'Angular + Spring Boot Tutorials' },
         { id: 4, body: 'Some other stuff' },
       ],
+      value: 'some state value',
     };
   }
 
-  mainRemoveAll() { console.log('remove all'); }
-  mainAddNote(note) { console.log('add Note'); }
-  
+  mainRemoveAll() {
+    console.log('remove all notes');
+  }
+
+  mainAddNote(note) {
+    console.log('Add this title:', note);
+  }
+
   mainDeleteNote(note) {
     console.log('delete...', note);
   }
@@ -36,6 +42,10 @@ class NotesMain extends Component {
         <Action
           removeAll={this.mainRemoveAll}
           addNote={this.mainAddNote}
+          placeholder={'Book Input...'}
+          label={'New Book:'}
+          onChangeText={text => this.setState({ value: text })}
+          input={this.state.value}
         />
       </View>
     );

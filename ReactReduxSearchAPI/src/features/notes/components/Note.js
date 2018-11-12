@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
+
 const Note = (props) => {
-  console.log(props.note);
 
   const deleteData = () => {
     props.deleteNote(props.note);
   };
-
 
   return (
     <View>
