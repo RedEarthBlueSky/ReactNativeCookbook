@@ -4,7 +4,8 @@ import { View, Text, Button } from 'react-native';
 
 const Note = (props) => {
 
-  const deleteData = () => {
+  const deleteData = (e) => {
+    e.preventDefault();
     props.deleteNote(props.note);
   };
 

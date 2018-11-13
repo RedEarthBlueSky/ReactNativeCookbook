@@ -37,7 +37,13 @@ class NotesMain extends Component {
   }
 
   mainDeleteNote(note) {
-    console.log('Delete Book...', note);
+    console.log('Delete Book:', note, 'at index', this.state.jsaNotes.indexOf(note));
+    this.setState((prevState) => {
+      prevState.jsaNotes.splice(prevState.jsaNotes.indexOf(note), 1);
+      return {
+        jsaNotes: prevState.jsaNotes
+      }
+    })
   }
 
   render() {
