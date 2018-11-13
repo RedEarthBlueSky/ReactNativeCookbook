@@ -8,7 +8,7 @@ const Notes = (props) => {
   const renderBookItem = () => {
     return props.notes.map(note =>
       <Note
-        key={note.id}
+        key={note}
         note={note}
         deleteNote={props.deleteNote}
       />

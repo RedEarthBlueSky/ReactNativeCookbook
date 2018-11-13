@@ -4,7 +4,6 @@ import { View, Text, TextInput, Button } from 'react-native';
 // import { Input } from 'react-native-elements';
 
 const Action = (props) => {
-  console.log(props);
 
   const addData = () => {
     props.addNote(props.input);

@@ -2,29 +2,31 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
+import notes from './config';
 import Notes from './components/Notes';
 import Action from './components/Action';
 
 class NotesMain extends Component {
   constructor(props) {
     super(props);
+    // good practice
+    this.mainRemoveAll = this.mainRemoveAll.bind(this);
+    this.mainAddNote = this.mainAddNote.bind(this);
+    this.mainDeleteNote = this.mainDeleteNote.bind(this);
     this.state = {
-      jsaNotes: [
-        { id: 1, body: 'Java Core Tutorials' },
-        { id: 2, body: 'Spring Integration Applications' },
-        { id: 3, body: 'Angular + Spring Boot Tutorials' },
-        { id: 4, body: 'Some other stuff' },
-      ],
-      value: 'some state value',
+      jsaNotes: notes,
+      value: '',
     };
   }
 
   mainRemoveAll() {
-    console.log('remove all notes');
+    console.log('Removing all the notes...');
+    this.setState({ jsaNotes: [] });
   }
 
   mainAddNote(note) {
-    console.log('Add this title:', note);
+    if (!note || note === '') console.log('Note should not be blank');
+    else console.log('Add this title:', note);
   }
 
   mainDeleteNote(note) {
@@ -42,6 +44,7 @@ class NotesMain extends Component {
         <Action
           removeAll={this.mainRemoveAll}
           addNote={this.mainAddNote}
+          addAll={this.mainAddAll}
           placeholder={'Book Input...'}
           label={'New Book:'}
           onChangeText={text => this.setState({ value: text })}

@@ -10,7 +10,7 @@ const Note = (props) => {
 
   return (
     <View>
-        <Text>Book {props.note.id}: {props.note.body}</Text>
+        <Text>Book: {props.note}</Text>
         <Button
           onPress={deleteData}
           style={{ margin: 5 }}
