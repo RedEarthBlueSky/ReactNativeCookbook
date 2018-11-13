@@ -25,12 +25,19 @@ class NotesMain extends Component {
   }
 
   mainAddNote(note) {
-    if (!note || note === '') console.log('Note should not be blank');
-    else console.log('Add this title:', note);
+    if (!note) {
+      console.log('Book should not be blank');
+    } else if (this.state.jsaNotes.indexOf(note) > -1) {
+      console.log('Book alread exists');
+    } else {
+      console.log('Add this title:', note, 'to', this.state);
+      //  add element to previous state using spread
+      this.setState({ jsaNotes: [...this.state.jsaNotes, note] });
+    }
   }
 
   mainDeleteNote(note) {
-    console.log('delete...', note);
+    console.log('Delete Book...', note);
   }
 
   render() {
